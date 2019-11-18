@@ -17,20 +17,14 @@ mainScene.create = function () {
 
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('capivara', { start: 0, end: 3 }),
+        frames: this.anims.generateFrameNumbers('capivara', { start: 0, end: 2 }),
         frameRate: 10,
         repeat: -1
     });
 
     this.anims.create({
-        key: 'turn',
-        frames: [{ key: 'capivara', frame: 4 }],
-        frameRate: 10
-    });
-
-    this.anims.create({
         key: 'right',
-        frames: this.anims.generateFrameNumbers('capivara', { start: 100, end: 0 }),
+        frames: this.anims.generateFrameNumbers('capivara', { start: 3, end: 5 }),
         frameRate: 10,
         repeat: -1
     });
@@ -48,10 +42,6 @@ mainScene.update = function () {
     else if (cursors.right.isDown) {
         player.setVelocityX(160);
         player.anims.play('right', true);
-    }
-    else {
-        player.setVelocityX(0);
-        player.anims.play('turn');
     }
 
 };
