@@ -1,13 +1,13 @@
-var winScene = new Phaser.Scene('over');
+var overScene = new Phaser.Scene('over');
 
-winScene.init = function () {
+overScene.init = function () {
 };
 
-winScene.preload = function () {
+overScene.preload = function () {
 };
 
-winScene.create = function () {
+overScene.create = function () {
 };
 
-winScene.update = function () {
+overScene.update = function () {
 };

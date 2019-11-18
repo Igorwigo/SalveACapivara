@@ -1,13 +1,13 @@
-var winScene = new Phaser.Scene('playSet');
+var playSetScene = new Phaser.Scene('playSet');
 
-winScene.init = function () {
+playSetScene.init = function () {
 };
 
-winScene.preload = function () {
+playSetScene.preload = function () {
 };
 
-winScene.create = function () {
+playSetScene.create = function () {
 };
 
-winScene.update = function () {
+playSetScene.update = function () {
 };

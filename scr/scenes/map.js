@@ -1,13 +1,13 @@
-var winScene = new Phaser.Scene('map');
+var mapScene = new Phaser.Scene('map');
 
-winScene.init = function () {
+mapScene.init = function () {
 };
 
-winScene.preload = function () {
+mapScene.preload = function () {
 };
 
-winScene.create = function () {
+mapScene.create = function () {
 };
 
-winScene.update = function () {
+mapScene.update = function () {
 };

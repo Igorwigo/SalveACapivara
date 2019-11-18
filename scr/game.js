@@ -18,12 +18,12 @@
         },
         scene: [
             mainScene,
-            // mapScene,
-            // playSetScene,
-            // winScene,
-            // overScene,
-            // infoScene,
-            // helpScene
+            mapScene,
+            playSetScene,
+            winScene,
+            overScene,
+            infoScene,
+            helpScene
         ]
     };
 
