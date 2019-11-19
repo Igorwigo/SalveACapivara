@@ -14,6 +14,8 @@ menuScene.create = function () {
   
 trocaScenePlay=false;
 trocaSceneInfo=false;
+trocaMapa=false;
+
 
     let bg = this.add.image(0, 0, 'fundo');
     bg.setOrigin(0, 0);
@@ -31,11 +33,12 @@ trocaSceneInfo=false;
            trocaSceneInfo=true;
         });
       /*-------------------------------------------------------------- */
+
 };
 
 menuScene.update=function(){
 if(trocaScenePlay==true){
-    this.scene.start('main');
+    this.scene.start('map');
 }
 if(trocaSceneInfo==true){
     this.scene.start('info');
