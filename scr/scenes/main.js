@@ -6,9 +6,14 @@ mainScene.init = function () {
 mainScene.preload = function () {
     this.load.image('background', 'assets/images/background.png');
     this.load.spritesheet('capivara', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
+    this.load.image('botao','assets/images/botao.png')
+
 };
 
 mainScene.create = function () {
+
+
+
     let bg = this.add.sprite(0, 0, 'background');
     bg.setOrigin(0, 0);
 
@@ -30,6 +35,21 @@ mainScene.create = function () {
     });
 
     cursors = this.input.keyboard.createCursorKeys();
+
+    var botao1 = this.add.image(219, 315, 'botao').setInteractive();
+    botao1.on('pointerdown', function (event) {
+     console.log("butao1")   
+    });
+    var botao2 = this.add.image(293, 315, 'botao').setInteractive();
+    botao2.on('pointerdown', function (event) {
+     console.log("butao2")   
+    });
+    var botao3 = this.add.image(367, 315, 'botao').setInteractive();
+    botao3.on('pointerdown', function (event) {
+     console.log("butao3")   
+    });
+
+
 
 };
 
