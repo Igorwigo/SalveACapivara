@@ -62,6 +62,7 @@ mainScene.create = function () {
         if(img_triangulo.texture.key=="triangulo"){
         img_triangulo.setVisible(false);
         console.log("Triângulo")
+        botao_triangulo.disableInteractive();
    
     }
     });
@@ -69,12 +70,14 @@ mainScene.create = function () {
     botao_bola.on('pointerdown', function (event) {
      console.log("bola")  
      img_bola.setVisible(false); 
+     botao_bola.disableInteractive();
     });
     var botao_quadrado = this.add.image(367, 315, 'quadrado').setInteractive();
     botao_quadrado.on('pointerdown', function (event) {
         img_quadrado.setVisible(false)
         console.log("quadro")   
-    });
+        botao_quadrado.disableInteractive();
+      });
 
 
 
