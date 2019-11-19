@@ -149,11 +149,15 @@ console.log(lista)
   
 };
 
+function salva_placar(placar1){
 
+
+}
 
 mainScene.update = function () {
 
-  if(score==30){
+  if(score==30 ){
+    localStorage.setItem("placar1",score);
     this.scene.start('win');
  }
   
