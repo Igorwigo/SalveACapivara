@@ -1,9 +1,10 @@
-var mainScene = new Phaser.Scene('main');
-console.log("FASE-------------1")
-mainScene.init = function () {
+var fase2 = new Phaser.Scene('fase2');
+console.log("FASE-------------2")
+
+fase2.init = function () {
 };
 
-mainScene.preload = function () {
+fase2.preload = function () {
     this.load.image('background', 'assets/images/background.png');
     this.load.spritesheet('capivara', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
     this.load.image('botao','assets/images/botao.png')
@@ -12,7 +13,7 @@ mainScene.preload = function () {
     this.load.image('bola','assets/images/bola.png')
 };
 
-mainScene.create = function () {
+fase2.create = function () {
 
   
 
@@ -49,7 +50,7 @@ mainScene.create = function () {
 
     cursors = this.input.keyboard.createCursorKeys();
 
-    var img_triangulo = this.add.image(219,40,'triangulo');
+   
 
     var img_bola = this.add.image(293,40,'bola');
     
@@ -63,16 +64,7 @@ mainScene.create = function () {
     
         /*----------------------------BOTAO_TRIANGULO---------------------------------- */
 
-    var botao_triangulo = this.add.image(219, 315, 'triangulo').setInteractive();
-    botao_triangulo.on('pointerdown', function (event) {
-        if(img_triangulo.texture.key=="triangulo"){
-        img_triangulo.setVisible(false);
-        console.log("Triângulo")
-        botao_triangulo.disableInteractive();
-        score += 10;
-        scoreText.setText('Score: ' + score);
-    }
-    });
+
         /*-------------------------------------------------------------- */
     /*-------------------------BOTAO_BOLA------------------------------------- */
 
@@ -98,15 +90,13 @@ mainScene.create = function () {
     /*-------------------------------------------------------------- */
 
 
-  
+
 };
 
+fase2.update = function () {
 
-
-mainScene.update = function () {
-
-  if(score==30){
-    this.scene.start('win');
+  if(score==20){
+    this.scene.start('win2');
  }
   
 

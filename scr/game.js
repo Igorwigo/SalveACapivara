@@ -21,12 +21,14 @@
             mapScene,
             playSetScene,
             winScene,
+            winScene2,
             overScene,
             infoScene,
-            helpScene
+            helpScene,
+            fase2,
         ]
     };
 
     var game = new Phaser.Game(config);
-    game.scene.start('menu');
+    game.scene.start('main');
 })();
