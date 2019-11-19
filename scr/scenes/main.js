@@ -56,7 +56,7 @@ mainScene.create = function () {
     var img_quadrado = this.add.image(367,40,'quadrado');
     /*------------------------------Logica das ordens-------------------------------- */
     
-    let lista = [true,false,false,null];
+    let lista = [false,false,false];
     /*-------------------------------------------------------------- */
 
 
@@ -69,20 +69,24 @@ console.log(lista)
     /*-------------------------------------------------------------- */
     
         /*----------------------------BOTAO_TRIANGULO---------------------------------- */
+      
+      
+        //  var botao_bola = this.add.image(293, 315, 'bola').setInteractive();
 
-    var botao_triangulo = this.add.image(219, 315, 'triangulo').setInteractive();
+    var botao_triangulo = this.add.image(293, 315, 'triangulo').setInteractive();
     botao_triangulo.on('pointerdown', function (event) {
-        if(img_triangulo.texture.key=="triangulo" && lista[0]==true && lista[1]==false && lista[2]==false){
+        if(img_triangulo.texture.key=="triangulo" && lista[0]==false && lista[1]==false && lista[2]==false){
         img_triangulo.setVisible(false);
         console.log("Triângulo")
         botao_triangulo.disableInteractive();
         score += 10;
         scoreText.setText('Score: ' + score);
         console.log("entrou no if - ",lista)
-          lista[1]=true;
+        lista[0]=true;
+        lista[1]=true;
     }
     else{
-        lista[0]=false;
+        
         img_triangulo.setVisible(false);
         score -= 10;
         scoreText.setText('Score: ' + score);
@@ -94,7 +98,7 @@ console.log(lista)
         /*-------------------------------------------------------------- */
     /*-------------------------BOTAO_BOLA------------------------------------- */
 
-    var botao_bola = this.add.image(293, 315, 'bola').setInteractive();
+    var botao_bola = this.add.image(219, 315, 'bola').setInteractive();
     botao_bola.on('pointerdown', function (event) {
       if(img_bola.texture.key=="bola" && lista[0]==true && lista[1]==true && lista[2]==false){
      console.log("bola")  
@@ -102,9 +106,10 @@ console.log(lista)
      botao_bola.disableInteractive();
      score += 10;
      scoreText.setText('Score: ' + score);
-    lista[2]=true;
+     lista[2]=true;
     }
      else{
+      
       img_bola.setVisible(false); 
       botao_bola.disableInteractive(); 
       score -= 10;
@@ -119,16 +124,17 @@ console.log(lista)
     var botao_quadrado = this.add.image(367, 315, 'quadrado').setInteractive();
     botao_quadrado.on('pointerdown', function (event) {
       
-        if(img_quadrado.texture.key=="bola"  && lista[0]==true && lista[1]==true && lista[2]==true ){
+        if(img_quadrado.texture.key=="quadrado"  && lista[0]==true && lista[1]==true && lista[2]==true ){
         img_quadrado.setVisible(false)
         console.log("quadro")   
         botao_quadrado.disableInteractive();
         score += 10;
         scoreText.setText('Score: ' + score);
-        lista[3]=true;
+        
         console.log('quadrado if',lista)
       }
         else{
+          lista[2]=false;
           score -= 10;
           scoreText.setText('Score: ' + score);
           botao_quadrado.disableInteractive();
