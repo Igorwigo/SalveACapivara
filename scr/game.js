@@ -1,5 +1,6 @@
 (function () {
     var config = {
+        
         width: 640,
         height: 360,
         type: Phaser.AUTO,
@@ -19,6 +20,7 @@
         scene: [
             mainScene,
             mapScene,
+            menuScene,
             playSetScene,
             winScene,
             winScene2,
@@ -30,5 +32,5 @@
     };
 
     var game = new Phaser.Game(config);
-    game.scene.start('main');
+    game.scene.start('menu');
 })();

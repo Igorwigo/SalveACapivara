@@ -1,39 +1,44 @@
-var menu = new Phaser.Scene('main');
+var menuScene = new Phaser.Scene('menu');
 
-menu.init = function () {
+menuScene.init = function () {
 };
 
-menu.preload = function () {
-    this.load.image('background', 'assets/images/background.png');
-    this.load.image('play','assets/images/botao.png')
-
+menuScene.preload = function () {
+    this.load.image('fundo', 'assets/images/menu.jpg');
+    this.load.image('play', 'assets/images/play.png');
+    this.load.image('info', 'assets/images/info.png');
 };
 
-menu.create = function () {
+menuScene.create = function () {
+    console.log("------------MENU-----------")
+  
+trocaScenePlay=false;
+trocaSceneInfo=false;
 
-
-
-    let bg = this.add.image(0, 0, 'background');
+    let bg = this.add.image(0, 0, 'fundo');
     bg.setOrigin(0, 0);
+   /*----------------------------BOTAO_PLAY---------------------------------- */
 
+   var botao_quadrado = this.add.image(320, 180, 'play').setInteractive();
+   botao_quadrado.on('pointerdown', function (event) {
+        trocaScenePlay=true;
+     });
+   /*-------------------------------------------------------------- */
+      /*----------------------------BOTAO_INFO---------------------------------- */
 
-
-
-    var img_triangulo = this.add.image(219,40,'triangulo');
-
-    var botao_triangulo = this.add.image(219, 315, 'triangulo').setInteractive();
-    botao_triangulo.on('pointerdown', function (event) {
-        if(img_triangulo.texture.key=="triangulo"){
-        img_triangulo.setVisible(false);
-        console.log("Triângulo")
-   
-    }
-    });
-
-
-
+      var botao_quadrado = this.add.image(320, 270, 'info').setInteractive();
+      botao_quadrado.on('pointerdown', function (event) {
+           trocaSceneInfo=true;
+        });
+      /*-------------------------------------------------------------- */
 };
 
-menu.update = function () {
+menuScene.update=function(){
+if(trocaScenePlay==true){
+    this.scene.start('main');
+}
+if(trocaSceneInfo==true){
+    this.scene.start('info');
+}
 
-};
+}
