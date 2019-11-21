@@ -28,6 +28,7 @@
             playSetScene,
             winScene,
             winScene2,
+            loseScene,
             overScene,
             infoScene,
             helpScene,

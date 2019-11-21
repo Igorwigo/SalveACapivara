@@ -179,6 +179,7 @@ console.log(lista)
         //  var botao_bola = this.add.image(293, 315, 'bola').setInteractive();
 
         contador_vida = 0;
+        contador_capivara=[];
 
     var botao_triangulo = this.add.image(293, 315, 'triangulo').setInteractive();
     botao_triangulo.on('pointerdown', function (event) {
@@ -271,7 +272,16 @@ console.log(lista)
 };
 
 
-function vida( ) {
+function gameOver() {
+  //  if(contador_vida==1){coracao.setVisible(false);}
+    //if(contador_vida==0){coracao.setVisible(false)}
+    if( contador_vida==1&&coracao.setVisible()==false||contador_vida==0&&coracao.setVisible()==false){
+            console.log("lose")
+
+    }
+    if( contador_vida==1&&coracao.setVisible()==false||contador_vida==2&&coracao1.setVisible()==false){
+        this.scene.start('lose');
+}
 
 }
 
@@ -339,24 +349,27 @@ mainScene.update = function () {
             capivara.anims.play('turn',true);
             
             console.log('parada',capivara.x)
-            if(contador_vida==3 ){
-                localStorage.setItem("placar1",contador_vida);
-                this.scene.start('win');
-             }
+
 
         }
         if(direita==false&&capivara1.x<25){
             capivara1.setVelocityX(0);
             capivara1.anims.play('turn',true);
+            contador_capivara[0]=true;
         }
         if(direita==false&&capivara2.x<40){
             capivara2.setVelocityX(0);
             capivara2.anims.play('turn',true);
+            contador_capivara[1]=true;
         }
         if(direita==false&&capivara3.x<50){
             capivara3.setVelocityX(0);
             capivara3.anims.play('turn',true);
+            contador_capivara[2]=true;
         }
     
-    
+        if(contador_capivara[0]==true &&contador_capivara[1]==true &&contador_capivara[2]==true ){
+            localStorage.setItem("placar1",contador_capivara);
+            this.scene.start('win');
+         }
 };
