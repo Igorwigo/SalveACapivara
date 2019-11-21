@@ -13,17 +13,24 @@ mainScene.preload = function () {
     this.load.spritesheet('coracao2','assets/images/coracao2.png', { frameWidth: 2290, frameHeight: 2140 });
     this.load.image('triangulo','assets/images/triangulo.png');
     this.load.image('quadrado','assets/images/quadrado.png');
+    this.load.image('varias_capi3','assets/images/varias_capi3.png');
+    this.load.image('varias_capi2','assets/images/varias_capi2.png');
+    this.load.image('varias_capi1','assets/images/varias_capi1.png');
+    this.load.image('varias_capi0','assets/images/varias_capi0.png');
     this.load.image('bola','assets/images/bola.png');
     this.load.spritesheet('fullscreen', 'assets/images/fullscreen.png', { frameWidth: 64, frameHeight: 64 });
 };
 
 mainScene.create = function () {
 
-  
+
 
     let bg = this.add.image(0, 0, 'background');
     bg.setOrigin(0, 0);
-
+    varias_capi3 = this.add.sprite(550,200,'varias_capi3').setScale(0.40).setVisible(true);
+    varias_capi2 = this.add.image(550,200,'varias_capi2').setScale(0.40).setVisible(false);
+    varias_capi1 = this.add.image(550,200,'varias_capi1').setScale(0.40).setVisible(false);
+    varias_capi0 = this.add.image(550,200,'varias_capi0').setScale(0.40).setVisible(false);
 
 //
     this.anims.create({
@@ -54,16 +61,16 @@ mainScene.create = function () {
     
     direita=false;
     
+    libera1=false;
+    libera2=false;
+    libera3=false;
 
-
-    cursors = this.input.keyboard.createCursorKeys();
 
     var img_triangulo = this.add.image(219,40,'triangulo');
 
-    var coracao = this.add.sprite(50,40,'coracao2',2).setScale(0.018).setVisible(true);
-    var coracao1 = this.add.image(100,40,'coracao').setScale(0.09).setVisible(false);
-    var coracao2 = this.add.image(150,40,'coracao').setScale(0.09).setVisible(false);
-
+    var coracao = this.add.sprite(50,40,'coracao2',0).setScale(0.018).setVisible(false);
+    var coracao1 = this.add.image(100,40,'coracao2',1).setScale(0.018).setVisible(false);
+    var coracao2 = this.add.image(150,40,'coracao2',2).setScale(0.018).setVisible(false);
 
 
 
@@ -73,6 +80,8 @@ mainScene.create = function () {
     /*------------------------------Logica das ordens-------------------------------- */
     
     let lista = [false,false,false];
+    lista_Presa = [false,false,false];
+
     /*-------------------------------------------------------------- */
     /*------------------------------Botao fullscreen-------------------------------- */
 
@@ -101,6 +110,9 @@ console.log(lista)
         botao_triangulo.disableInteractive();
         contador_vida += 1;
         coracao.setVisible(true);
+        lista_Presa[0]=true;
+
+
 
         console.log("Contador de vidas - ",contador_vida)
         lista[0]=true;
@@ -125,10 +137,12 @@ console.log(lista)
      console.log("bola")  
      img_bola.setVisible(false); 
      botao_bola.disableInteractive();
-
+    
      lista[2]=true;
+     lista_Presa[1]=true;
      direita=true;
-     
+
+
      coracao1.setVisible(true);
     }
      else{
@@ -154,6 +168,9 @@ console.log(lista)
         botao_quadrado.disableInteractive();
         coracao2.setVisible(true);
         direita=true;       
+        lista_Presa[2]=true;
+        
+
 
       }
         else{
@@ -191,13 +208,43 @@ mainScene.update = function () {
         console.log("right",capivara.x)
     }
         
-        if(capivara.x>=600){
+        if(capivara.x>=415){
             direita=false;
 
             capivara.setVelocityX(-160);
             capivara.anims.play('left',true);
             console.log('esquerda',capivara.x)
+
+
+            /*    var varias_capi3 = this.add.sprite(550,200,'varias_capi3',2).setScale(0.42).setVisible(true);
+    var varias_capi2 = this.add.image(550,200,'varias_capi2').setScale(0.42).setVisible(false);
+    var varias_capi1 = this.add.image(550,200,'varias_capi1').setScale(0.42).setVisible(false);
+    var varias_capi0 = this.add.image(550,200,'varias_capi1').setScale(0.42).setVisible(false); */
+            if(lista_Presa[0]==true){
+                libera1=false;
+                varias_capi3.setVisible(false);
+                varias_capi2.setVisible(true);
+                console.log("Liberou 1: ",lista_Presa[0])
+            }
+             if(lista_Presa[1]==true){
+                lista_Presa[1]==false;
+                varias_capi2.setVisible(false);
+                varias_capi1.setVisible(true);
+                libera2=false;
+
+                console.log("Liberou 2: ",lista_Presa[1])
+
+            }
+            if(lista_Presa[2]==true){
+                lista_Presa[2]==false;
+                
+                varias_capi1.setVisible(false);
+                varias_capi0.setVisible(true);
+                libera3=false;
+                console.log("Liberou 3: ",lista_Presa[2])
+            }
         }
+
 
         if(direita==false&&capivara.x<50){
 
