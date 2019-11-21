@@ -9,6 +9,10 @@ mainScene.init = function () {
 mainScene.preload = function () {
     this.load.image('background', 'assets/images/background.png');
     this.load.spritesheet('capivara', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
+    this.load.spritesheet('capivara1', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
+    this.load.spritesheet('capivara2', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
+    this.load.spritesheet('capivara3', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
+
     this.load.image('botao','assets/images/botao.png');
     this.load.spritesheet('coracao2','assets/images/coracao2.png', { frameWidth: 2290, frameHeight: 2140 });
     this.load.image('triangulo','assets/images/triangulo.png');
@@ -32,7 +36,7 @@ mainScene.create = function () {
     varias_capi1 = this.add.image(550,200,'varias_capi1').setScale(0.40).setVisible(false);
     varias_capi0 = this.add.image(550,200,'varias_capi0').setScale(0.40).setVisible(false);
 
-//
+/*---------------------------------Animação da capivara padrão-----------------------*/
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('capivara', { start: 0, end: 2 }),
@@ -52,9 +56,83 @@ mainScene.create = function () {
         frames: [{ key: 'capivara', frame: 3 }],
         frameRate: 10,
     });
+    /*----------------------------------------------------------------------*/
+
+/*---------------------------------Animação da capivara SOLTA 1111111111111111111111111-----------------------*/
+this.anims.create({
+    key: 'left',
+    frames: this.anims.generateFrameNumbers('capivara1', { start: 0, end: 2 }),
+    frameRate: 10,
+    repeat: -1
+});
+
+this.anims.create({
+    key: 'right',
+    frames: this.anims.generateFrameNumbers('capivara1', { start: 3, end: 5 }),
+    frameRate: 10,
+    repeat: -1
+});
+
+this.anims.create({
+    key: 'turn',
+    frames: [{ key: 'capivara1', frame: 3 }],
+    frameRate: 10,
+});
+/*---------------------------------Animação da capivara SOLTA 2222222222222222222222-----------------------*/
+this.anims.create({
+    key: 'left',
+    frames: this.anims.generateFrameNumbers('capivara2', { start: 0, end: 2 }),
+    frameRate: 10,
+    repeat: -1
+});
+
+this.anims.create({
+    key: 'right',
+    frames: this.anims.generateFrameNumbers('capivara2', { start: 3, end: 5 }),
+    frameRate: 10,
+    repeat: -1
+});
+
+this.anims.create({
+    key: 'turn',
+    frames: [{ key: 'capivara2', frame: 3 }],
+    frameRate: 10,
+});
+/*---------------------------------Animação da capivara SOLTA 333333333333333333333-----------------------*/
+this.anims.create({
+    key: 'left',
+    frames: this.anims.generateFrameNumbers('capivara3', { start: 0, end: 2 }),
+    frameRate: 10,
+    repeat: -1
+});
+
+this.anims.create({
+    key: 'right',
+    frames: this.anims.generateFrameNumbers('capivara3', { start: 3, end: 5 }),
+    frameRate: 10,
+    repeat: -1
+});
+
+this.anims.create({
+    key: 'turn',
+    frames: [{ key: 'capivara3', frame: 3 }],
+    frameRate: 10,
+});
+    /*--------------------------colocando as capivaras-------------------*/
     capivara = this.physics.add.sprite(60, 250, 'capivara',3);
     capivara.setScale(1);
-    
+        /*--------------------------colocando as soltas-------------------*/
+
+    capivara1 = this.physics.add.sprite(550, 261, 'capivara1',2);
+    capivara1.setScale(0.5).setVisible(false);
+
+    capivara2 = this.physics.add.sprite(550, 261, 'capivara2',2);
+    capivara2.setScale(0.5).setVisible(false);
+
+    capivara3 = this.physics.add.sprite(550, 261, 'capivara3',2);
+    capivara3.setScale(0.5).setVisible(false);
+        /*----------------------------------------------------------------------*/
+
     //capivara.setCollideWorldBounds(true);
  
 
@@ -225,13 +303,18 @@ mainScene.update = function () {
                 varias_capi3.setVisible(false);
                 varias_capi2.setVisible(true);
                 console.log("Liberou 1: ",lista_Presa[0])
+                capivara1.setVisible(true);
+                capivara1.anims.play('left',true);
+                capivara1.setVelocityX(-160);
             }
              if(lista_Presa[1]==true){
                 lista_Presa[1]==false;
                 varias_capi2.setVisible(false);
                 varias_capi1.setVisible(true);
                 libera2=false;
-
+                capivara2.setVisible(true);
+                capivara2.anims.play('left',true);
+                capivara2.setVelocityX(-160);
                 console.log("Liberou 2: ",lista_Presa[1])
 
             }
@@ -241,16 +324,20 @@ mainScene.update = function () {
                 varias_capi1.setVisible(false);
                 varias_capi0.setVisible(true);
                 libera3=false;
+                capivara3.setVisible(true);
+                capivara3.anims.play('left',true);
+                capivara3.setVelocityX(-160);
                 console.log("Liberou 3: ",lista_Presa[2])
             }
         }
 
 
-        if(direita==false&&capivara.x<50){
+        if(direita==false&&capivara.x<100){
 
 
             capivara.setVelocityX(0);
             capivara.anims.play('turn',true);
+            
             console.log('parada',capivara.x)
             if(contador_vida==3 ){
                 localStorage.setItem("placar1",contador_vida);
@@ -258,53 +345,18 @@ mainScene.update = function () {
              }
 
         }
-
-               
-    
-/*
-    if(direita==false ){
-
-        capivara.setVelocityX(-160);
-        capivara.anims.play('left', true);
-        console.log("Volando",capivara.x)
-
-        if(capivara.x<=50){
-
-            capivara.setVelocityX(0);
-            capivara.anims.play('turn');
-
+        if(direita==false&&capivara1.x<25){
+            capivara1.setVelocityX(0);
+            capivara1.anims.play('turn',true);
         }
-    }*/
- /*------------------------------------------------------------------------*/
-
-
-
-/*
-    else{
-
-        capivara.setVelocityX(0);
-        capivara.anims.play('turn');
-
-    }
-*/
- 
-
-
-
-  /*  if (cursors.left.isDown) {
-        capivara.setVelocityX(-160);
-        capivara.anims.play('left', true);
-    }
-    else if (cursors.right.isDown) {
-        capivara.setVelocityX(160);
-        capivara.anims.play('right', true);
-     }
-    else {
-        capivara.setVelocityX(0);
-        capivara.anims.play('turn');
-    }*/
-    /*if (esquerda1==true) {
-        capivara.setVelocityX(-160);
-        capivara.anims.play('left', true);
-    }*/
+        if(direita==false&&capivara2.x<40){
+            capivara2.setVelocityX(0);
+            capivara2.anims.play('turn',true);
+        }
+        if(direita==false&&capivara3.x<50){
+            capivara3.setVelocityX(0);
+            capivara3.anims.play('turn',true);
+        }
+    
+    
 };
