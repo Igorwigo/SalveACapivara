@@ -9,10 +9,11 @@ mainScene.init = function () {
 mainScene.preload = function () {
     this.load.image('background', 'assets/images/background.png');
     this.load.spritesheet('capivara', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
-    this.load.image('botao','assets/images/botao.png')
-    this.load.image('triangulo','assets/images/triangulo.png')
-    this.load.image('quadrado','assets/images/quadrado.png')
-    this.load.image('bola','assets/images/bola.png')
+    this.load.image('botao','assets/images/botao.png');
+    this.load.image('vida1','assets/images/vida1.png');
+    this.load.image('triangulo','assets/images/triangulo.png');
+    this.load.image('quadrado','assets/images/quadrado.png');
+    this.load.image('bola','assets/images/bola.png');
     this.load.spritesheet('fullscreen', 'assets/images/fullscreen.png', { frameWidth: 64, frameHeight: 64 });
 };
 
@@ -59,6 +60,13 @@ mainScene.create = function () {
 
     var img_triangulo = this.add.image(219,40,'triangulo');
 
+    var img_vida_Full = this.add.image(100,40,'vida1').setScale(0.14);
+    var img_vida_Half = this.add.image(100,40,'vida2').setScale(0.14).setVisible(false);
+    var img_vida_LOW = this.add.image(100,40,'vida3').setScale(0.14).setVisible(false);
+
+
+
+
     var img_bola = this.add.image(293,40,'bola');
     
     var img_quadrado = this.add.image(367,40,'quadrado');
@@ -73,9 +81,9 @@ console.log(lista)
         /*-------------------------------------------------------------- */
 
     /* Adicionado o SCORE*/
-    score= 0;
-    var scoreText;
-    scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '28px', fill: '#000' });
+   // score= 0;
+    //var scoreText;
+   // scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '28px', fill: '#000' });
     /*-------------------------------------------------------------- */
     
         /*----------------------------BOTAO_TRIANGULO---------------------------------- */
@@ -83,21 +91,23 @@ console.log(lista)
       
         //  var botao_bola = this.add.image(293, 315, 'bola').setInteractive();
 
+        contador_vida = 3;
+
     var botao_triangulo = this.add.image(293, 315, 'triangulo').setInteractive();
     botao_triangulo.on('pointerdown', function (event) {
         if(img_triangulo.texture.key=="triangulo" && lista[0]==false && lista[1]==false && lista[2]==false){
         img_triangulo.setVisible(false);
         console.log("Triângulo")
         botao_triangulo.disableInteractive();
-        score += 10;
-        scoreText.setText('Score: ' + score);
+       // score += 10;
+        //scoreText.setText('Score: ' + score);
         console.log("entrou no if - ",lista)
         lista[0]=true;
         lista[1]=true;
         direita=true;
     }
     else{
-        
+        contador_vida = contador_vida -1;
         img_triangulo.setVisible(false);
         score -= 10;
         scoreText.setText('Score: ' + score);
@@ -122,7 +132,7 @@ console.log(lista)
 
     }
      else{
-      
+        contador_vida = contador_vida -1;
       img_bola.setVisible(false); 
       botao_bola.disableInteractive(); 
       score -= 10;
@@ -147,6 +157,7 @@ console.log(lista)
 
       }
         else{
+          contador_vida = contador_vida -1;
           lista[2]=false;
           score -= 10;
           scoreText.setText('Score: ' + score);
@@ -163,16 +174,14 @@ console.log(lista)
 };
 
 
+function vida( ) {
 
-
+}
 
 
 mainScene.update = function () {
 
-  if(score==30 ){
-    localStorage.setItem("placar1",score);
-    this.scene.start('win');
- }
+
  /*------------------------logica da capivara andando-------------*/
     if ( direita==true && capivara.x>0) {
         capivara.setVelocityX(160);
@@ -194,7 +203,23 @@ mainScene.update = function () {
             capivara.setVelocityX(0);
             capivara.anims.play('turn',true);
             console.log('parada',capivara.x)
+            if(contador_vida==3 ){
+                localStorage.setItem("placar1",contador_vida);
+                this.scene.start('win');
+             }
+            else{
+                if(contador_vida ==2){
+                    img_vida_Full.setVisible(false);
+                    img_vida_Half.setVisible(true);
+            
+                }
+                if(contador_vida ==1){
+                    img_vida_Full.setVisible(false);
+                    img_vida_Half.setVisible(false);
+                    img_vida_Half.setVisible(true);
+                }
 
+            }
         }
 
                
