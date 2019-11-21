@@ -20,31 +20,32 @@ mainScene.create = function () {
     bg.setOrigin(0, 0);
 
     capivara = this.physics.add.sprite(30, 250, 'capivara');
-    capivara.setScale(0.7);
+    capivara.setScale(1);
 
 //
-//    this.anims.create({
-//        key: 'left',
-//        frames: this.anims.generateFrameNumbers('capivara', { start: 0, end: 2 }),
-  //      frameRate: 10,
-    //    repeat: -1
- //   });
+    this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('capivara', { start: 0, end: 2 }),
+        frameRate: 10,
+        repeat: -1
+    });
 
-  //  this.anims.create({
-    //    key: 'right',
-      //  frames: this.anims.generateFrameNumbers('capivara', { start: 3, end: 5 }),
-        //frameRate: 10,
-        //repeat: -1
-   // });
+    this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('capivara', { start: 3, end: 5 }),
+        frameRate: 10,
+        repeat: -1
+    });
 
- //   this.anims.create({
-   //     key: 'turn',
-     //   frames: [{ key: 'capivara', frame: 3 }],
-       // frameRate: 10,
-   // });
-//
+    this.anims.create({
+        key: 'turn',
+        frames: [{ key: 'capivara', frame: 3 }],
+        frameRate: 10,
+    });
+
     
-
+    esquerda1=false;
+    direita1=false;
 
 
     cursors = this.input.keyboard.createCursorKeys();
@@ -84,6 +85,8 @@ console.log(lista)
         console.log("entrou no if - ",lista)
         lista[0]=true;
         lista[1]=true;
+        esquerda1=true;
+        direita1=true;
     }
     else{
         
@@ -149,10 +152,10 @@ console.log(lista)
   
 };
 
-function salva_placar(placar1){
 
 
-}
+
+
 
 mainScene.update = function () {
 
@@ -164,17 +167,31 @@ mainScene.update = function () {
 
 
 
-//    if (cursors.left.isDown) {
-//        capivara.setVelocityX(-160);
-//        capivara.anims.play('left', true);
-    //}
-//    else if (cursors.right.isDown) {
- //       capivara.setVelocityX(160);
-   //     capivara.anims.play('right', true);
-    //}
-    //else {
-      //  capivara.setVelocityX(0);
-        //capivara.anims.play('turn');
-    //}
+  /*  if (cursors.left.isDown) {
+        capivara.setVelocityX(-160);
+        capivara.anims.play('left', true);
+    }
+    else if (cursors.right.isDown) {
+        capivara.setVelocityX(160);
+        capivara.anims.play('right', true);
+     }
+    else {
+        capivara.setVelocityX(0);
+        capivara.anims.play('turn');
+    }*/
+    /*if (esquerda1==true) {
+        capivara.setVelocityX(-160);
+        capivara.anims.play('left', true);
+    }*/
+    if ( direita1==true) {
+        capivara.setVelocityX(160);
+        capivara.anims.play('right', true);
+        
+    }
+    else{
 
+        capivara.setVelocityX(0);
+        capivara.anims.play('turn');
+
+    }
 };
