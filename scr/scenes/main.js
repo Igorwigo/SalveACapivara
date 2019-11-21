@@ -1,6 +1,9 @@
 var mainScene = new Phaser.Scene('main');
 console.log("FASE-------------1")
 mainScene.init = function () {
+
+    this.capiMaxX = 600;
+    this.capiMinX = 40;
 };
 
 mainScene.preload = function () {
@@ -10,6 +13,7 @@ mainScene.preload = function () {
     this.load.image('triangulo','assets/images/triangulo.png')
     this.load.image('quadrado','assets/images/quadrado.png')
     this.load.image('bola','assets/images/bola.png')
+    this.load.spritesheet('fullscreen', 'assets/images/fullscreen.png', { frameWidth: 64, frameHeight: 64 });
 };
 
 mainScene.create = function () {
@@ -19,8 +23,6 @@ mainScene.create = function () {
     let bg = this.add.image(0, 0, 'background');
     bg.setOrigin(0, 0);
 
-    capivara = this.physics.add.sprite(30, 250, 'capivara');
-    capivara.setScale(1);
 
 //
     this.anims.create({
@@ -42,10 +44,15 @@ mainScene.create = function () {
         frames: [{ key: 'capivara', frame: 3 }],
         frameRate: 10,
     });
+    capivara = this.physics.add.sprite(60, 250, 'capivara',3);
+    capivara.setScale(1);
+    
+    //capivara.setCollideWorldBounds(true);
+ 
 
     
-    esquerda1=false;
-    direita1=false;
+    direita=false;
+    
 
 
     cursors = this.input.keyboard.createCursorKeys();
@@ -59,10 +66,12 @@ mainScene.create = function () {
     
     let lista = [false,false,false];
     /*-------------------------------------------------------------- */
+    /*------------------------------Botao fullscreen-------------------------------- */
 
 
 console.log(lista)
-    
+        /*-------------------------------------------------------------- */
+
     /* Adicionado o SCORE*/
     score= 0;
     var scoreText;
@@ -85,8 +94,7 @@ console.log(lista)
         console.log("entrou no if - ",lista)
         lista[0]=true;
         lista[1]=true;
-        esquerda1=true;
-        direita1=true;
+        direita=true;
     }
     else{
         
@@ -110,6 +118,8 @@ console.log(lista)
      score += 10;
      scoreText.setText('Score: ' + score);
      lista[2]=true;
+     direita=true;
+
     }
      else{
       
@@ -133,8 +143,8 @@ console.log(lista)
         botao_quadrado.disableInteractive();
         score += 10;
         scoreText.setText('Score: ' + score);
-        
-        console.log('quadrado if',lista)
+        direita=true;       
+
       }
         else{
           lista[2]=false;
@@ -163,7 +173,59 @@ mainScene.update = function () {
     localStorage.setItem("placar1",score);
     this.scene.start('win');
  }
-  
+ /*------------------------logica da capivara andando-------------*/
+    if ( direita==true && capivara.x>0) {
+        capivara.setVelocityX(160);
+        capivara.anims.play('right', true);
+        console.log("right",capivara.x)
+    }
+        
+        if(capivara.x>=600){
+            direita=false;
+
+            capivara.setVelocityX(-160);
+            capivara.anims.play('left',true);
+            console.log('esquerda',capivara.x)
+        }
+
+        if(direita==false&&capivara.x<50){
+
+
+            capivara.setVelocityX(0);
+            capivara.anims.play('turn',true);
+            console.log('parada',capivara.x)
+
+        }
+
+               
+    
+/*
+    if(direita==false ){
+
+        capivara.setVelocityX(-160);
+        capivara.anims.play('left', true);
+        console.log("Volando",capivara.x)
+
+        if(capivara.x<=50){
+
+            capivara.setVelocityX(0);
+            capivara.anims.play('turn');
+
+        }
+    }*/
+ /*------------------------------------------------------------------------*/
+
+
+
+/*
+    else{
+
+        capivara.setVelocityX(0);
+        capivara.anims.play('turn');
+
+    }
+*/
+ 
 
 
 
@@ -183,15 +245,4 @@ mainScene.update = function () {
         capivara.setVelocityX(-160);
         capivara.anims.play('left', true);
     }*/
-    if ( direita1==true) {
-        capivara.setVelocityX(160);
-        capivara.anims.play('right', true);
-        
-    }
-    else{
-
-        capivara.setVelocityX(0);
-        capivara.anims.play('turn');
-
-    }
 };

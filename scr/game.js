@@ -1,11 +1,14 @@
 (function () {
     var config = {
-        
+
         width: 640,
         height: 360,
-        type: Phaser.AUTO,
         title: 'Salve a Capivara!',
         backgroundColor: 0x24c215,
+        type: Phaser.AUTO,
+        mode: Phaser.Scale.FIT,
+        
+        autoCenter: Phaser.Scale.CENTER,
         input: {
             keyboard: true,
             mouse: true,
@@ -14,7 +17,8 @@
         physics: {
             default: 'arcade',
             arcade: {
-                debug: false
+                debug: false,
+                gravity:false,
             }
         },
         scene: [
@@ -28,7 +32,9 @@
             infoScene,
             helpScene,
             fase2,
-        ]
+        ],
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+
     };
 
     var game = new Phaser.Game(config);
