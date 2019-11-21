@@ -10,7 +10,7 @@ mainScene.preload = function () {
     this.load.image('background', 'assets/images/background.png');
     this.load.spritesheet('capivara', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
     this.load.image('botao','assets/images/botao.png');
-    this.load.image('vida1','assets/images/vida1.png');
+    this.load.spritesheet('coracao2','assets/images/coracao2.png', { frameWidth: 2290, frameHeight: 2140 });
     this.load.image('triangulo','assets/images/triangulo.png');
     this.load.image('quadrado','assets/images/quadrado.png');
     this.load.image('bola','assets/images/bola.png');
@@ -60,9 +60,9 @@ mainScene.create = function () {
 
     var img_triangulo = this.add.image(219,40,'triangulo');
 
-    var img_vida_Full = this.add.image(100,40,'vida1').setScale(0.14);
-    var img_vida_Half = this.add.image(100,40,'vida2').setScale(0.14).setVisible(false);
-    var img_vida_LOW = this.add.image(100,40,'vida3').setScale(0.14).setVisible(false);
+    var coracao = this.add.sprite(50,40,'coracao2',2).setScale(0.018).setVisible(true);
+    var coracao1 = this.add.image(100,40,'coracao').setScale(0.09).setVisible(false);
+    var coracao2 = this.add.image(150,40,'coracao').setScale(0.09).setVisible(false);
 
 
 
@@ -91,7 +91,7 @@ console.log(lista)
       
         //  var botao_bola = this.add.image(293, 315, 'bola').setInteractive();
 
-        contador_vida = 3;
+        contador_vida = 0;
 
     var botao_triangulo = this.add.image(293, 315, 'triangulo').setInteractive();
     botao_triangulo.on('pointerdown', function (event) {
@@ -99,18 +99,18 @@ console.log(lista)
         img_triangulo.setVisible(false);
         console.log("Triângulo")
         botao_triangulo.disableInteractive();
-       // score += 10;
-        //scoreText.setText('Score: ' + score);
-        console.log("entrou no if - ",lista)
+        contador_vida += 1;
+        coracao.setVisible(true);
+
+        console.log("Contador de vidas - ",contador_vida)
         lista[0]=true;
         lista[1]=true;
         direita=true;
     }
     else{
-        contador_vida = contador_vida -1;
+        contador_vida -=1;
         img_triangulo.setVisible(false);
-        score -= 10;
-        scoreText.setText('Score: ' + score);
+
         botao_triangulo.disableInteractive();
         console.log("entrou no else- ",lista)
 
@@ -125,18 +125,19 @@ console.log(lista)
      console.log("bola")  
      img_bola.setVisible(false); 
      botao_bola.disableInteractive();
-     score += 10;
-     scoreText.setText('Score: ' + score);
+
      lista[2]=true;
      direita=true;
-
+     
+     coracao1.setVisible(true);
     }
      else{
+         if(contador_vida==1){coracao.setVisible(false);}
+        if(contador_vida==0){coracao.setVisible(false)}
         contador_vida = contador_vida -1;
       img_bola.setVisible(false); 
       botao_bola.disableInteractive(); 
-      score -= 10;
-      scoreText.setText('Score: ' + score);
+
 
 
      }
@@ -151,16 +152,17 @@ console.log(lista)
         img_quadrado.setVisible(false)
         console.log("quadro")   
         botao_quadrado.disableInteractive();
-        score += 10;
-        scoreText.setText('Score: ' + score);
+        coracao2.setVisible(true);
         direita=true;       
 
       }
         else{
+            if(contador_vida==1){coracao.setVisible(false);}
+            if(contador_vida==2){coracao1.setVisible(false)}
+         coracao1.setVisible(false);
           contador_vida = contador_vida -1;
           lista[2]=false;
-          score -= 10;
-          scoreText.setText('Score: ' + score);
+
           botao_quadrado.disableInteractive();
           img_quadrado.setVisible(false)
 
@@ -207,19 +209,7 @@ mainScene.update = function () {
                 localStorage.setItem("placar1",contador_vida);
                 this.scene.start('win');
              }
-            else{
-                if(contador_vida ==2){
-                    img_vida_Full.setVisible(false);
-                    img_vida_Half.setVisible(true);
-            
-                }
-                if(contador_vida ==1){
-                    img_vida_Full.setVisible(false);
-                    img_vida_Half.setVisible(false);
-                    img_vida_Half.setVisible(true);
-                }
 
-            }
         }
 
                
