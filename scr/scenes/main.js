@@ -31,10 +31,10 @@ mainScene.create = function () {
 
     let bg = this.add.image(0, 0, 'background');
     bg.setOrigin(0, 0);
-    varias_capi3 = this.add.sprite(550,200,'varias_capi3').setScale(0.40).setVisible(true);
-    varias_capi2 = this.add.image(550,200,'varias_capi2').setScale(0.40).setVisible(false);
-    varias_capi1 = this.add.image(550,200,'varias_capi1').setScale(0.40).setVisible(false);
-    varias_capi0 = this.add.image(550,200,'varias_capi0').setScale(0.40).setVisible(false);
+    varias_capi3 = this.add.sprite(550,190,'varias_capi3').setScale(0.40).setVisible(true);
+    varias_capi2 = this.add.image(550,190,'varias_capi2').setScale(0.40).setVisible(false);
+    varias_capi1 = this.add.image(550,190,'varias_capi1').setScale(0.40).setVisible(false);
+    varias_capi0 = this.add.image(550,190,'varias_capi0').setScale(0.40).setVisible(false);
 
 /*---------------------------------Animação da capivara padrão-----------------------*/
     this.anims.create({
@@ -119,17 +119,17 @@ this.anims.create({
     frameRate: 10,
 });
     /*--------------------------colocando as capivaras-------------------*/
-    capivara = this.physics.add.sprite(60, 250, 'capivara',3);
+    capivara = this.physics.add.sprite(60, 210, 'capivara',3);
     capivara.setScale(1);
         /*--------------------------colocando as soltas-------------------*/
 
-    capivara1 = this.physics.add.sprite(550, 261, 'capivara1',2);
+    capivara1 = this.physics.add.sprite(550, 220, 'capivara1',2);
     capivara1.setScale(0.5).setVisible(false);
 
-    capivara2 = this.physics.add.sprite(550, 261, 'capivara2',2);
+    capivara2 = this.physics.add.sprite(550, 220, 'capivara2',2);
     capivara2.setScale(0.5).setVisible(false);
 
-    capivara3 = this.physics.add.sprite(550, 261, 'capivara3',2);
+    capivara3 = this.physics.add.sprite(550, 220, 'capivara3',2);
     capivara3.setScale(0.5).setVisible(false);
         /*----------------------------------------------------------------------*/
 
