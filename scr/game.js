@@ -39,5 +39,5 @@
     };
 
     var game = new Phaser.Game(config);
-    game.scene.start('main');
+    game.scene.start('menu');
 })();
