@@ -17,7 +17,7 @@ mainScene.preload = function () {
     this.load.image('certo', 'assets/images/certo.png');
     this.load.image('erro', 'assets/images/erro.png');
 
-
+    this.load.image('fase1','assets/images/fase1.png');
     this.load.image('botao','assets/images/botao.png');
     this.load.image('triangulo','assets/images/triangulo.png');
     this.load.image('quadrado','assets/images/quadrado.png');
@@ -32,7 +32,7 @@ mainScene.preload = function () {
 mainScene.create = function () {
     let bg = this.add.image(0, 0, 'background');
     bg.setOrigin(0, 0);
-    this.add.text(10, 10, 'Fase 1', { fontSize: '25px', fontFamily: 'Arial', fill: '#fff' });
+    this.add.image(60, 20, 'fase1');
     varias_capi3 = this.add.sprite(550,190,'varias_capi3').setScale(0.40).setVisible(true);
     varias_capi2 = this.add.image(550,190,'varias_capi2').setScale(0.40).setVisible(false);
     varias_capi1 = this.add.image(550,190,'varias_capi1').setScale(0.40).setVisible(false);
