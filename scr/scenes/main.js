@@ -1,7 +1,7 @@
 var mainScene = new Phaser.Scene('main');
 console.log("FASE-------------1")
 mainScene.init = function () {
-
+    localStorage.clear();
     this.capiMaxX = 600;
     this.capiMinX = 40;
 };
@@ -31,6 +31,7 @@ mainScene.preload = function () {
 mainScene.create = function () {
     let bg = this.add.image(0, 0, 'background');
     bg.setOrigin(0, 0);
+    this.add.text(100, 50, 'fase1', { fontSize: '100px', fontFamily: 'Arial', fill: '#fff' });
     varias_capi3 = this.add.sprite(550,190,'varias_capi3').setScale(0.40).setVisible(true);
     varias_capi2 = this.add.image(550,190,'varias_capi2').setScale(0.40).setVisible(false);
     varias_capi1 = this.add.image(550,190,'varias_capi1').setScale(0.40).setVisible(false);

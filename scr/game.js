@@ -23,6 +23,7 @@
         },
         scene: [
             mainScene,
+            fase2Scene,
             mapScene,
             menuScene,
             playSetScene,
@@ -31,7 +32,6 @@
             loseScene,
             overScene,
             infoScene,
-            fase2,
         ],
         //autoCenter: Phaser.Scale.CENTER_BOTH,
 
