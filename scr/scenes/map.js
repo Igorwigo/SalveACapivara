@@ -5,6 +5,7 @@ mapScene.init = function () {
 
 mapScene.preload = function () {
     this.load.image('mapa', 'assets/images/mapa.png');
+    this.load.image('play', 'assets/images/play.png');
 
 };
 
@@ -18,8 +19,17 @@ mapScene.create = function () {
    var botao_quadrado = this.add.image(320, 180, 'play').setInteractive();
    botao_quadrado.on('pointerdown', function (event) {
     trocaSceneFase1=true;
+    console.log("play")
      });
    /*-------------------------------------------------------------- */
+
+
+
+
+   //localStorage.getItem('placar1')==3
+
+
+
 
 
 };

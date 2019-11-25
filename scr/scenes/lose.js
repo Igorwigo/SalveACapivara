@@ -5,7 +5,7 @@ loseScene.init = function () {
 
 loseScene.preload = function () {
     
-    this.load.image('star', 'assets/images/star.png');
+    this.load.image('reinicio', 'assets/images/star.png');
 
 
 };

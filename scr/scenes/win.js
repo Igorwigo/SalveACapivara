@@ -14,20 +14,8 @@ winScene.create = function () {
     let bg = this.add.sprite(0, 0, 'background');
     bg.setOrigin(0, 0);
 
-if(localStorage.getItem('placar1')==30){
-    this.star = this.add.group({
-        
-        key: 'star',
-        repeat: 2,
-        setXY: {
-            x: 250,
-            y: 200,
-            stepX: 35,
-        }
-    })
-    
-
-    
+if(localStorage.getItem('placar1')==3){
+       
     ;};
 
     this.add.text(100, 50, 'Vitória', { fontSize: '100px', fontFamily: 'Arial', fill: '#fff' });

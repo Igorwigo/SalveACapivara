@@ -18,7 +18,6 @@ mainScene.preload = function () {
 
 
     this.load.image('botao','assets/images/botao.png');
-    this.load.spritesheet('coracao2','assets/images/coracao2.png', { frameWidth: 2290, frameHeight: 2140 });
     this.load.image('triangulo','assets/images/triangulo.png');
     this.load.image('quadrado','assets/images/quadrado.png');
     this.load.image('varias_capi3','assets/images/varias_capi3.png');
@@ -379,5 +378,14 @@ mainScene.update = function () {
         if(contador_capivara[0]==true &&contador_capivara[1]==true &&contador_capivara[2]==true ){
             localStorage.setItem("placar1",contador_capivara.length);
             this.scene.start('win');
+         }
+        if(contador_capivara[0]==true &&contador_capivara[1]==true &&contador_capivara[2]==true ){
+            localStorage.setItem("placar1",contador_capivara.length);
+            this.scene.start('win');
+         }
+         if(varias_capi1.setVisible==true){
+
+            this.scene.start('lose');
+
          }
 };
