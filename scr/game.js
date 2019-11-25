@@ -5,10 +5,10 @@
         height: 360,
         title: 'Salve a Capivara!',
         backgroundColor: 0x24c215,
-        type: Phaser.AUTO,
-        mode: Phaser.Scale.FIT,
-        
-        autoCenter: Phaser.Scale.CENTER,
+        //type: Phaser.AUTO,
+        //mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+      //autoCenter: Phaser.Scale.CENTER,
         input: {
             keyboard: true,
             mouse: true,
@@ -31,10 +31,9 @@
             loseScene,
             overScene,
             infoScene,
-            helpScene,
             fase2,
         ],
-        autoCenter: Phaser.Scale.CENTER_BOTH,
+        //autoCenter: Phaser.Scale.CENTER_BOTH,
 
     };
 

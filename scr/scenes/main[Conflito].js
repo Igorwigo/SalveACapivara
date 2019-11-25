@@ -14,7 +14,7 @@ mainScene.preload = function () {
     this.load.spritesheet('capivara3', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
 
     this.load.image('certo', 'assets/images/certo.png');
-    this.load.image('erro', 'assets/images/erro.png');
+    this.load.image('errado', 'assets/images/errado.png');
 
 
     this.load.image('botao','assets/images/botao.png');
@@ -135,7 +135,10 @@ this.anims.create({
         /*----------------------------------------------------------------------*/
    
     direita=false;
-
+    
+    libera1=false;
+    libera2=false;
+    libera3=false;
 
 
     var img_triangulo = this.add.image(219,40,'triangulo');
@@ -152,8 +155,8 @@ this.anims.create({
     /*------------------------------Logica das ordens-------------------------------- */
     
     let lista = [false,false,false];
-    let lista_erro = [false,false,false];
-    cap_solta=0;
+    lista_Presa = [false,false,false];
+
     /*-------------------------------------------------------------- */
     contador_vida = 0;
     contador_capivara=[];
@@ -168,14 +171,13 @@ this.anims.create({
         console.log("Triângulo")
         botao_triangulo.disableInteractive();
         contador_vida += 1;
-        cap_solta+=1;
-
+        coracao.setVisible(true);
+        lista_Presa[0]=true;
         console.log("Contador de vidas - ",contador_vida)
         lista[0]=true;
         lista[1]=true;
         direita=true;
         certo1.setVisible(true);
-        lista_erro[0]=true;
     }
     else{
         contador_vida -=1;
@@ -188,33 +190,30 @@ this.anims.create({
     });
         /*-------------------------------------------------------------- */
     /*-------------------------BOTAO_BOLA------------------------------------- */
-
+    errou1=false;
+    errou2=false;
     var botao_bola = this.add.image(219, 315, 'bola').setInteractive();
     certo2 = this.add.image(293,40,'certo').setVisible(false);
-    erro2 = this.add.image(219,40,'erro').setVisible(false);
+    erro2 = this.add.image(293,40,'erro').setVisible(false);
 
     botao_bola.on('pointerdown', function (event) {
       if(img_bola.texture.key=="bola" && lista[0]==true && lista[1]==true && lista[2]==false){
      console.log("bola")  
      botao_bola.disableInteractive();
      lista[2]=true;
-     cap_solta+=1;
-
+     lista_Presa[1]=true;
      direita=true;
+     coracao1.setVisible(true);
      certo2.setVisible(true);
     }
      else{
-        lista_erro[0]=true;
-        if( lista_erro[0]==true&&lista_erro[1]==false&&lista_erro[2]==false){
-            erro2.setVisible(true);        
-            botao_triangulo.disableInteractive();
-            console.log("errou--BOLA")
-            lista[0]=true;
-            lista[1]=true;
-        }
-
+         errou1=true;
+         if( errou1==true&&errou2==false  ){erro2.setVisible(true)}
+         if(contador_vida==1){coracao.setVisible(false);}
+        if(contador_vida==0){coracao.setVisible(false)}
         contador_vida = contador_vida -1;
-      
+
+        console.log("errou--BOLA")
 
 
      }
@@ -224,41 +223,32 @@ this.anims.create({
 
     var botao_quadrado = this.add.image(367, 315, 'quadrado').setInteractive();
     certo3 = this.add.image(367,40,'certo').setVisible(false);
-    erro3 = this.add.image(293,40,'erro').setVisible(false);
+    erro3 = this.add.image(367,40,'erro').setVisible(false);
 
     botao_quadrado.on('pointerdown', function (event) {
       
         if(img_quadrado.texture.key=="quadrado"  && lista[0]==true && lista[1]==true && lista[2]==true ){
         console.log("quadro")   
         botao_quadrado.disableInteractive();
+        coracao2.setVisible(true);
         direita=true;       
-        cap_solta+=1;
-
+        lista_Presa[2]=true;
         certo3.setVisible(true);
 
 
       }
         else{
-            if( lista_erro[0]==false&&lista_erro[1]==false&&lista_erro[2]==false){
-                erro2.setVisible(true);                
-                console.log("ERROU-----triangulo")   
-                botao_triangulo.disableInteractive();
-                lista_erro[1]=true;
-                lista[0]=true;
-                lista[1]=true;
-            }
+            botao_quadrado.setInteractive();
+            errou2=true;
+            if(contador_vida==1){coracao.setVisible(false);}
+            if(contador_vida==2){coracao1.setVisible(false)}
+         coracao1.setVisible(false);
+          contador_vida = contador_vida -1;
+          lista[2]=false;
 
+console.log("errou--QUADRADO")
+        }
 
-            else{
-                erro3.setVisible(true);
-                botao_bola.disableInteractive();
-                console.log("ERROU-----*****----BOLA")   
-lista[0]=true;
-lista[1]=true;
-lista[2]=true;
-
-            };
-        };
       });
     /*-------------------------------------------------------------- */ 
 };
@@ -294,35 +284,8 @@ mainScene.update = function () {
             console.log('esquerda',capivara.x)
 
 
-            if( cap_solta==1  ){
-                varias_capi3.setVisible(false);
-                varias_capi2.setVisible(true);
-                capivara1.setVisible(true);
-                capivara1.anims.play('left',true);
-                capivara1.setVelocityX(-160);
-                console.log("Liberou 2: ",cap_solta)
-
-            }
-             if(cap_solta==2){
-                varias_capi2.setVisible(false);
-                varias_capi1.setVisible(true);
-                capivara2.setVisible(true);
-                capivara2.anims.play('left',true);
-                capivara2.setVelocityX(-160);
-                console.log("Liberou 2: ",cap_solta)
-
-            }
-            if( cap_solta==3){
-                varias_capi1.setVisible(false);
-                varias_capi0.setVisible(true);
-                capivara3.setVisible(true);
-                capivara3.anims.play('left',true);
-                capivara3.setVelocityX(-160);
-                console.log("Liberou 3: ",cap_solta)
-            }
-        }
-
-/*                   if(lista_Presa[0]==true){
+            if(lista_Presa[0]==true){
+                libera1=false;
                 varias_capi3.setVisible(false);
                 varias_capi2.setVisible(true);
                 console.log("Liberou 1: ",lista_Presa[0])
@@ -334,6 +297,7 @@ mainScene.update = function () {
                 lista_Presa[1]==false;
                 varias_capi2.setVisible(false);
                 varias_capi1.setVisible(true);
+                libera2=false;
                 capivara2.setVisible(true);
                 capivara2.anims.play('left',true);
                 capivara2.setVelocityX(-160);
@@ -345,11 +309,15 @@ mainScene.update = function () {
                 
                 varias_capi1.setVisible(false);
                 varias_capi0.setVisible(true);
+                libera3=false;
                 capivara3.setVisible(true);
                 capivara3.anims.play('left',true);
                 capivara3.setVelocityX(-160);
                 console.log("Liberou 3: ",lista_Presa[2])
-            }       */
+            }
+        }
+
+
         if(direita==false&&capivara.x<100){
 
 
@@ -377,7 +345,7 @@ mainScene.update = function () {
         }
     
         if(contador_capivara[0]==true &&contador_capivara[1]==true &&contador_capivara[2]==true ){
-            localStorage.setItem("placar1",contador_capivara.length);
+            localStorage.setItem("placar1",contador_capivara);
             this.scene.start('win');
          }
 };

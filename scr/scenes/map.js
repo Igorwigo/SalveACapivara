@@ -22,14 +22,6 @@ mapScene.create = function () {
    /*-------------------------------------------------------------- */
 
 
-
-
-
-
-
-
-
-
 };
 
 mapScene.update = function () {
