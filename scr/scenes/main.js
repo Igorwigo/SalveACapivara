@@ -155,7 +155,7 @@ this.anims.create({
     cap_solta=0;
     /*-------------------------------------------------------------- */
     contador_vida = 0;
-    contador_capivara=[];
+    contador_capivara=[false,false,false];
 /*----------------------------------TRIANGULO----------------------------*/
     var botao_triangulo = this.add.image(293, 315, 'triangulo').setInteractive();
     certo1 = this.add.image(219,40,'certo').setVisible(false);
@@ -321,41 +321,13 @@ mainScene.update = function () {
             }
         }
 
-/*                   if(lista_Presa[0]==true){
-                varias_capi3.setVisible(false);
-                varias_capi2.setVisible(true);
-                console.log("Liberou 1: ",lista_Presa[0])
-                capivara1.setVisible(true);
-                capivara1.anims.play('left',true);
-                capivara1.setVelocityX(-160);
-            }
-             if(lista_Presa[1]==true){
-                lista_Presa[1]==false;
-                varias_capi2.setVisible(false);
-                varias_capi1.setVisible(true);
-                capivara2.setVisible(true);
-                capivara2.anims.play('left',true);
-                capivara2.setVelocityX(-160);
-                console.log("Liberou 2: ",lista_Presa[1])
-
-            }
-            if(lista_Presa[2]==true){
-                lista_Presa[2]==false;
-                
-                varias_capi1.setVisible(false);
-                varias_capi0.setVisible(true);
-                capivara3.setVisible(true);
-                capivara3.anims.play('left',true);
-                capivara3.setVelocityX(-160);
-                console.log("Liberou 3: ",lista_Presa[2])
-            }       */
         if(direita==false&&capivara.x<100){
 
 
             capivara.setVelocityX(0);
             capivara.anims.play('turn',true);
             
-            console.log('parada',capivara.x)
+            //console.log('parada',capivara.x)
 
 
         }
@@ -383,9 +355,7 @@ mainScene.update = function () {
             localStorage.setItem("placar1",contador_capivara.length);
             this.scene.start('win');
          }
-         if(varias_capi1.setVisible==true){
 
-            this.scene.start('lose');
+console.log("total de capivaras soltas",contador_capivara.length)
 
-         }
 };

@@ -16,9 +16,9 @@ loseScene.create = function () {
 
 
 
-    this.add.text(100, 50, 'PERDEU PLAYBOY', { fontSize: '100px', fontFamily: 'Arial', fill: '#fff' });
-    this.add.text(40, 150, 'Você alcançou o tesouro!', { fontSize: '33px', fill: '#fff', fontFamily: 'Arial' });
-    this.add.text(40, 260, 'Pressione a barra PARA REINICIAR', { fontSize: '18px', fill: '#fff', fontFamily: 'Arial' });
+    this.add.text(180, 50, 'PERDEU! :(', { fontSize: '50px', fontFamily: 'Arial', fill: '#FF0000' });
+    this.add.text(40, 170, 'Para passar é necessario acertar todas as sequencias!', { fontSize: '18px', fill: '#FF0000', fontFamily: 'Arial' });
+    this.add.text(40, 260, 'Pressione a barra PARA REINICIAR', { fontSize: '18px', fill: '#FF0000', fontFamily: 'Arial' });
     this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 };
 
