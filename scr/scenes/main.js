@@ -18,7 +18,6 @@ mainScene.preload = function () {
     this.load.image('erro', 'assets/images/erro.png');
 
     this.load.image('fase1','assets/images/fase1.png');
-    this.load.image('botao','assets/images/botao.png');
     this.load.image('triangulo','assets/images/triangulo.png');
     this.load.image('quadrado','assets/images/quadrado.png');
     this.load.image('varias_capi3','assets/images/varias_capi3.png');
@@ -26,7 +25,7 @@ mainScene.preload = function () {
     this.load.image('varias_capi1','assets/images/varias_capi1.png');
     this.load.image('varias_capi0','assets/images/varias_capi0.png');
     this.load.image('bola','assets/images/bola.png');
-    this.load.spritesheet('fullscreen', 'assets/images/fullscreen.png', { frameWidth: 64, frameHeight: 64 });
+    this.load.image('reinicio', 'assets/images/reinicio.png');
 };
 
 mainScene.create = function () {
@@ -158,6 +157,8 @@ this.anims.create({
     /*-------------------------------------------------------------- */
     contador_vida = 0;
     contador_capivara=[false,false,false];
+
+    reiniciar=false;
 /*----------------------------------TRIANGULO----------------------------*/
     var botao_triangulo = this.add.image(293, 315, 'triangulo').setInteractive();
     certo1 = this.add.image(219,40,'certo').setVisible(false);
@@ -262,6 +263,12 @@ lista[2]=true;
         };
       });
     /*-------------------------------------------------------------- */ 
+    
+    var botao_reinicio = this.add.image(600,310, 'reinicio').setInteractive();
+    botao_reinicio.on('pointerdown', function (event) {
+        reiniciar=true;
+    });
+
 };
 
 
@@ -357,6 +364,13 @@ mainScene.update = function () {
             localStorage.setItem("placar1",contador_capivara.length);
             this.scene.start('win');
          }
+
+
+         if(reiniciar==true){
+            this.scene.start('main');
+         }
+
+         
 
 console.log("total de capivaras soltas",contador_capivara.length)
 

@@ -158,6 +158,7 @@ this.anims.create({
     /*-------------------------------------------------------------- */
     contador_vida = 0;
     contador_capivara=[false,false,false];
+    reiniciar=false;
 /*----------------------------------TRIANGULO----------------------------*/
     var botao_triangulo = this.add.image(293, 315, 'triangulo').setInteractive();
     certo1 = this.add.image(219,40,'certo').setVisible(false);
@@ -262,6 +263,12 @@ lista[2]=true;
         };
       });
     /*-------------------------------------------------------------- */ 
+
+    var botao_reinicio = this.add.image(600,310, 'reinicio').setInteractive();
+    botao_reinicio.on('pointerdown', function (event) {
+        reiniciar=true;
+    });
+
 };
 
 
@@ -356,6 +363,11 @@ fase2Scene.update = function () {
         if(contador_capivara[0]==true &&contador_capivara[1]==true &&contador_capivara[2]==true ){
             localStorage.setItem("placar1",contador_capivara.length);
             this.scene.start('win2');
+         }
+
+
+         if(reiniciar==true){
+            this.scene.start('fase2');
          }
 
 console.log("total de capivaras soltas",contador_capivara.length)
