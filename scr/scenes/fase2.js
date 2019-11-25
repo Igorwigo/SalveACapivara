@@ -31,7 +31,7 @@ fase2Scene.preload = function () {
 fase2Scene.create = function () {
     let bg = this.add.image(0, 0, 'background');
     bg.setOrigin(0, 0);
-    this.add.text(100, 50, 'fase2', { fontSize: '100px', fontFamily: 'Arial', fill: '#fff' });
+    this.add.text(10, 10, 'Fase 2', { fontSize: '25px', fontFamily: 'Arial', fill: '#fff' });
 
     varias_capi3 = this.add.sprite(550,190,'varias_capi3').setScale(0.40).setVisible(true);
     varias_capi2 = this.add.image(550,190,'varias_capi2').setScale(0.40).setVisible(false);

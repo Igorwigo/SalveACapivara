@@ -8,6 +8,7 @@ mainScene.init = function () {
 
 mainScene.preload = function () {
     this.load.image('background', 'assets/images/background.png');
+    this.load.image('background2', 'assets/images/background2.png');
     this.load.spritesheet('capivara', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
     this.load.spritesheet('capivara1', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
     this.load.spritesheet('capivara2', 'assets/images/capivara.png', { frameWidth: 75, frameHeight: 48 });
@@ -31,7 +32,7 @@ mainScene.preload = function () {
 mainScene.create = function () {
     let bg = this.add.image(0, 0, 'background');
     bg.setOrigin(0, 0);
-    this.add.text(100, 50, 'fase1', { fontSize: '100px', fontFamily: 'Arial', fill: '#fff' });
+    this.add.text(10, 10, 'Fase 1', { fontSize: '25px', fontFamily: 'Arial', fill: '#fff' });
     varias_capi3 = this.add.sprite(550,190,'varias_capi3').setScale(0.40).setVisible(true);
     varias_capi2 = this.add.image(550,190,'varias_capi2').setScale(0.40).setVisible(false);
     varias_capi1 = this.add.image(550,190,'varias_capi1').setScale(0.40).setVisible(false);

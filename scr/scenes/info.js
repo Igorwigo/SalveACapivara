@@ -12,7 +12,7 @@ infoScene.create = function () {
     console.log("------------INFO-----------")
 
     trocaSceneMenu=false;
-    let bg = this.add.sprite(0, 0, 'background');
+    let bg = this.add.sprite(0, 0, 'background2');
     bg.setOrigin(0, 0);
              /*----------------------------BOTAO_VOLTAR---------------------------------- */
 
@@ -21,9 +21,6 @@ infoScene.create = function () {
                trocaSceneMenu=true;
                });
              /*-------------------------------------------------------------- */
-
-    this.add.text(100, 50, 'Olá', { fontSize: '50px', fontFamily: 'Arial', fill: '#fff' });
-   this.add.text(40, 150, 'Trabalho desenvolvido na disciplina de multimidia e hipermidia!', { fontSize: '15px', fill: '#fff', fontFamily: 'Arial' });
     
 
 };
